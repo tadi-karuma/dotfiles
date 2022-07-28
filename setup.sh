@@ -68,6 +68,10 @@ else
 	echo $SSH_PUB >> $AUT_KEY && chmod 600 $AUT_KEY
 fi
 
+EMAIL=$(echo $SSH_PUB | awk '{print $3}')
+git config --global user.name $USER
+git config --global user.email $EMAIL
+
 echo $PASS | sudo -S apt install socat -y
 echo $PASS | sudo -S apt install peco -y
 echo $PASS | sudo -S apt install zsh -y
@@ -84,5 +88,5 @@ do
 done
 echo $(tput setaf 2)Deploy dotfiles complete!. $(tput sgr0)
 
-[ ${SHELL} != "/bin/zsh"  ] && chsh -s /bin/zsh
+[ ${SHELL} != "/bin/zsh"  ] && echo $PASS | sudo -S chsh -s /bin/zsh
 echo "$(tput setaf 2)Initialize complete!. $(tput sgr0)"
