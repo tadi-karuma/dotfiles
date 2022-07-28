@@ -109,11 +109,17 @@ bindkey '^E' peco-cdr
 if test $(service docker status | awk '{print $4}') = 'not'; then
 	sudo /usr/sbin/service docker start
 fi
-
+## Win_user
+if [ "$(uname 2> /dev/null)" = Linux ]; then
+  if [[ "$(uname -r 2> /dev/null)" = *microsoft* ]]; then
+    export WIN_USERNAME=$(powershell.exe '$env:USERNAME' | sed -e 's/\r//g')
+    export WIN_USERHOME=/mnt/c/Users/$WIN_USERNAME
+  fi
+fi
 ## ssh
 export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
 ss -a | grep -q $SSH_AUTH_SOCK
 if [ $? -ne 0   ]; then
     rm -f $SSH_AUTH_SOCK
-    ( setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"/mnt/c/Users/田力　正徳/scoop/apps/wsl-ssh-agent/current/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork & ) >/dev/null 2>&1
+    ( setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"$WIN_USERHOME/scoop/apps/wsl-ssh-agent/current/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork & ) >/dev/null 2>&1
 fi
