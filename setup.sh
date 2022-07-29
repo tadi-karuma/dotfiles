@@ -1,5 +1,6 @@
 #!/bin/bash
-read -s -p -r "press password :" PASS
+echo "press password :"
+read -sr PASS
 
 echo "$PASS" | sudo -S apt update -y
 echo "$PASS" | sudo -S apt upgrade -y
@@ -31,17 +32,15 @@ fi
 ## Win_user
 if [ "$(uname 2> /dev/null)" = Linux ]; then
   if [[ "$(uname -r 2> /dev/null)" = *microsoft* ]]; then
-    WIN_USERNAME=$(powershell.exe "$(env:USERNAME)" | sed -e 's/\r//g')
+    WIN_USERNAME=$(powershell.exe '$env:USERNAME' | sed -e 's/\r//g')
     WIN_USERHOME=/mnt/c/Users/$WIN_USERNAME
   fi
 fi
 
 ## ssh_host
 #SSH_HOST_KEY_FILE="/etc/ssh/ssh_host_ed25519_key"
-
-if find /etc/ssh -type f -name "ssh_host_*_key" ;then
-	:
-else
+ls /etc/ssh/ssh_host_*_key /dev/null 2>&1
+if [ $? = 1 ] ;then
 	echo "$PASS" | sudo -S ssh-keygen -A
 fi
 #if [ ! -e $SSH_HOST_KEY_FILE ];then
@@ -86,5 +85,5 @@ do
 done
 echo "$(tput setaf 2)Deploy dotfiles complete!. $(tput sgr0)"
 
-[ "${SHELL}" != "/bin/zsh"  ] && echo "$PASS" | sudo -S chsh -s /bin/zsh
+[ "${SHELL}" != "/bin/zsh"  ] && chsh -s /bin/zsh
 echo "$(tput setaf 2)Initialize complete!. $(tput sgr0)"
