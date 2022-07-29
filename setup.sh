@@ -39,7 +39,7 @@ fi
 
 ## ssh_host
 #SSH_HOST_KEY_FILE="/etc/ssh/ssh_host_ed25519_key"
-ls "/etc/ssh/ssh_host_*_key" > /dev/null 2>&1
+ls /etc/ssh/ssh_host_*_key > /dev/null 2>&1
 if [ $? = 1 ] ;then
 	echo "$PASS" | sudo -S ssh-keygen -A
 fi
