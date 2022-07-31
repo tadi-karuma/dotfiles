@@ -109,9 +109,11 @@ bindkey '^E' peco-cdr
 #if test $(service docker status | awk '{print $4}') = 'not'; then
 #	sudo /usr/sbin/service docker start
 #fi
+
 ## Win_user
 if [ "$(uname 2> /dev/null)" = Linux ]; then
   if [[ "$(uname -r 2> /dev/null)" = *microsoft* ]]; then
+    export PATH="$PATH:$(/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0//powershell.exe '$env:PATH' | sed -e 's/\r//g')"
     export WIN_USERNAME=$(powershell.exe '$env:USERNAME' | sed -e 's/\r//g')
     export WIN_USERHOME=/mnt/c/Users/$WIN_USERNAME
   fi
