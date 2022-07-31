@@ -113,10 +113,11 @@ bindkey '^E' peco-cdr
 ## Win_user
 if [ "$(uname 2> /dev/null)" = Linux ]; then
   if [[ "$(uname -r 2> /dev/null)" = *microsoft* ]]; then
-    export PATH="$PATH:$WIN_PATH:$(/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0//powershell.exe '$env:PATH' | sed -e 's/C:/\/mnt\/c/g' -e 's/\\/\//g' -e 's/;/:/g' | iconv -f sjis -t utf8)"
+    PShell_Path='/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0'
+    export PATH="$PATH:$WIN_PATH:$(${PShell_Path}/powershell.exe '$env:PATH' | sed -e 's/C:/\/mnt\/c/g' -e 's/\\/\//g' -e 's/;/:/g')"
     typeset -U path PATH
     export WIN_USERNAME=$(powershell.exe '$env:USERNAME' | sed -e 's/\r//g')
-    export WIN_USERHOME=/mnt/c/Users/$WIN_USERNAME
+    export WIN_USERHOME=/mnt/c/Users/${WIN_USERNAME}
   fi
 fi
 ## ssh
