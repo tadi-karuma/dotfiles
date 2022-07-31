@@ -106,9 +106,9 @@ function peco-cdr () {
 zle -N peco-cdr
 bindkey '^E' peco-cdr
 
-if test $(service docker status | awk '{print $4}') = 'not'; then
-	sudo /usr/sbin/service docker start
-fi
+#if test $(service docker status | awk '{print $4}') = 'not'; then
+#	sudo /usr/sbin/service docker start
+#fi
 ## Win_user
 if [ "$(uname 2> /dev/null)" = Linux ]; then
   if [[ "$(uname -r 2> /dev/null)" = *microsoft* ]]; then
