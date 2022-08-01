@@ -29,10 +29,6 @@ if [ ! -d "${DOT_DIRECTORY}" ]; then
 	rm -rf "${DOT_DIRECTORY}"
 	mkdir "${DOT_DIRECTORY}"
 	if has "git"; then
-		GIT_PUB=$(cat "$WIN_USERHOME/.ssh/id_github_ed25519.pub")
-		EMAIL=$(echo "$GIT_PUB" | awk '{print $3}')
-		git config --global user.name "$USER"
-		git config --global user.email "$EMAIL"
 		git clone --recursive "${REMOTE_URL}" "${DOT_DIRECTORY}"
 	else
 		curl -fsSLo "${HOME}/dotfiles.tar.gz ${DOT_TARBALL}"
