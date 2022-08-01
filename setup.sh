@@ -22,7 +22,7 @@ has() {
 ## dotfiles
 DOT_DIRECTORY="${HOME}/dotfiles"
 DOT_TARBALL="https://github.com/tadi-karuma/dotfiles/tarball/master"
-REMOTE_URL="git@github.com:tadi-karuma/dotfiles.git"
+REMOTE_URL="https://github.com/tadi-karuma/dotfiles.git"
 
 if [ ! -d "${DOT_DIRECTORY}" ]; then
 	echo "Downloading dotfiles..."
