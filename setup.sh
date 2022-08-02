@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-echo -n "press password :"
+echo -n "password :"
 read -sr PASS
 
 echo "$PASS" | sudo -S apt-get update -y
