@@ -80,11 +80,5 @@ if ! grep -q "${SSH_BOOT}" "${WSL_CONF}"; then
 	fi
 fi
 
-##github
-GIT_PUB=$(cat "$WIN_USERHOME/.ssh/id_github_ed25519.pub")
-EMAIL=$(echo "$GIT_PUB" | awk '{print $3}')
-git config --global user.name "$USER"
-git config --global user.email "$EMAIL"
-
 [ "${SHELL}" != "/bin/zsh" ] && chsh -s /bin/zsh
 echo "$(tput setaf 2)Initialize complete!. $(tput sgr0)"
