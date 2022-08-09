@@ -73,7 +73,8 @@ fi
 WSL_CONF=/etc/wsl.conf
 if [ ! -f "$WSL_CONF" ]; then
 	echo "$PASS" | sudo -S touch "$WSL_CONF"
-fi	
+fi
+
 SSH_BOOT=$(echo -n "sudo /usr/sbin/service ssh start")
 if ! grep -q "${SSH_BOOT}" "${WSL_CONF}"; then
 	if grep -q "[boot]" "${WSL_CONF}"; then
