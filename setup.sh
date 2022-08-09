@@ -71,7 +71,7 @@ if ! grep -xq "${WSL_PUB}" "${AUT_KEY}"; then
 fi
 
 WSL_CONF=/etc/wsl.conf
-if [ ! -f "$WSL_CONF" ] then
+if [ ! -f "$WSL_CONF" ]; then
 	echo "$PASS" | sudo -S touch "$WSL_CONF"
 fi	
 SSH_BOOT=$(echo -n "sudo /usr/sbin/service ssh start")
