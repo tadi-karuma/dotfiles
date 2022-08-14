@@ -75,7 +75,7 @@ if [ ! -f "$WSL_CONF" ]; then
 	echo "$PASS" | sudo -S touch "$WSL_CONF"
 fi
 
-SSH_BOOT=$(echo -n "sudo /usr/sbin/service ssh start")
+SSH_BOOT=$(echo -n "/usr/sbin/service ssh start")
 if ! grep -q "${SSH_BOOT}" "${WSL_CONF}"; then
 	if grep -q "[boot]" "${WSL_CONF}"; then
 		echo "$PASS" | sudo -S sed -i -e "/\[boot\]/a ${SSH_BOOT}" "$WSL_CONF"
