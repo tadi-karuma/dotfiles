@@ -92,7 +92,6 @@ function peco-history-selection() {
     CURSOR=$#BUFFER
     zle reset-prompt
 }
-
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
 
