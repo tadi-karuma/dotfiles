@@ -111,18 +111,27 @@ bindkey '^E' peco-cdr
 
 ## Win_user
 if [ "$(uname 2> /dev/null)" = Linux ]; then
-  if [[ "$(uname -r 2> /dev/null)" = *microsoft* ]]; then
-    PShell_Path='/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0'
-    export PATH="$PATH:$WIN_PATH:$(${PShell_Path}/powershell.exe '$env:PATH' | sed -e 's/C:/\/mnt\/c/g' -e 's/\\/\//g' -e 's/;/:/g')"
-    typeset -U path PATH
-    export WIN_USERNAME=$(powershell.exe '$env:USERNAME' | sed -e 's/\r//g')
-    export WIN_USERHOME=/mnt/c/Users/${WIN_USERNAME}
-  fi
+    if [[ "$(uname -r 2> /dev/null)" = *microsoft* ]]; then
+        PShell_Path='/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0'
+        export PATH="$PATH:$WIN_PATH:$(${PShell_Path}/powershell.exe '$env:PATH' | sed -e 's/C:/\/mnt\/c/g' -e 's/\\/\//g' -e 's/;/:/g')"
+        typeset -U path PATH
+        export WIN_USERNAME=$(powershell.exe '$env:USERNAME' | sed -e 's/\r//g')
+        export WIN_USERHOME=/mnt/c/Users/${WIN_USERNAME}
+    fi
 fi
 ## ssh
+eval $(~/.ssh/wsl2-ssh-agent)
 export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
 ss -a | grep -q $SSH_AUTH_SOCK
 if [ $? -ne 0   ]; then
     rm -f $SSH_AUTH_SOCK
     ( setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork & ) >/dev/null 2>&1
+fi
+## pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+##Xserv
+if [[ -n $SSH_CONNECTION ]]; then
+    export DISPLAY=localhost:10.0
 fi
