@@ -20,7 +20,7 @@ has() {
 }
 
 ## dotfiles
-DOT_DIRECTORY="${HOME}/dotfiles"
+DOT_DIRECTORY="${HOME}/.dotfiles"
 DOT_TARBALL="https://github.com/tadi-karuma/dotfiles/tarball/master"
 REMOTE_URL="https://github.com/tadi-karuma/dotfiles.git"
 
