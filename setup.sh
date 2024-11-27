@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 echo -n "password :"
-read -sr PASS
+read -sr PASS < /dev/tty
 
 echo "$PASS" | sudo -S apt-get update -y
 echo "$PASS" | sudo -S apt-get dist-upgrade -y
