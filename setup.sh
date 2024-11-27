@@ -65,7 +65,7 @@ if [ ! -d ~/.ssh ]; then
 	chmod 700 ~/.ssh
 fi
 AUT_KEY=$HOME/.ssh/authorized_keys
-WSL_PUB=$(cat "$WIN_USERHOME/.ssh/wsl_ed25519.pub")
+WSL_PUB=$(powershell.exe "op item get 'wsl_ed25519' --field 'public key'")
 if ! grep -xq "${WSL_PUB}" "${AUT_KEY}"; then
 	echo "$WSL_PUB" >>"$AUT_KEY" && chmod 600 "$AUT_KEY"
 fi
