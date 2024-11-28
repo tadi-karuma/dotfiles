@@ -46,7 +46,7 @@ for f in .??*; do
 done
 echo "$(tput setaf 2)Deploy dotfiles complete!. $(tput sgr0)"
 
-echo "$PASS" | sudo -S apt install socat peco zsh build-essential libffi-dev libssl-dev zlib1g-dev liblzma-dev libbz2-dev libreadline-dev libsqlite3-dev libopencv-dev tk-dev git
+echo "$PASS" | sudo -S apt install socat peco zsh build-essential libffi-dev libssl-dev zlib1g-dev liblzma-dev libbz2-dev libreadline-dev libsqlite3-dev libopencv-dev tk-dev git -y
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 
 ## ssh_host
