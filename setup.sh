@@ -49,6 +49,7 @@ echo "$(tput setaf 2)Deploy dotfiles complete!. $(tput sgr0)"
 echo "$PASS" | sudo -S apt install socat -y
 echo "$PASS" | sudo -S apt install peco -y
 echo "$PASS" | sudo -S apt install zsh -y
+echo "$PASS" | sudo -S apt install pyenv -y
 
 ## ssh_host
 if ! ls /etc/ssh/ssh_host_*_key >/dev/null 2>&1; then
