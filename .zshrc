@@ -10,7 +10,7 @@ fi
 # Created by newuser for 5.8.1
 #
 
-SCRIPT_DIR="${HOME}/dotfiles"
+SCRIPT_DIR="${HOME}/.dotfiles"
 
 source "${SCRIPT_DIR}/zsh/plugins.zsh"
 source "${SCRIPT_DIR}/zsh/p10k.zsh"
