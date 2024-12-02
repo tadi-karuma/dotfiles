@@ -23,7 +23,7 @@ if $REBUILD; then
     echo "Rebuilding the environment..."
     echo "$PASS" | sudo -S apt-get remove --purge -y \
         socat peco zsh build-essential libffi-dev libssl-dev zlib1g-dev \
-        liblzma-dev libbz2-dev libreadline-dev libsqlite3-dev libopencv-dev tk-dev git
+        liblzma-dev libbz2-dev libreadline-dev libsqlite3-dev libopencv-dev tk-dev git ssh
     rm -rf ~/.dotfiles ~/.pyenv ~/.ssh/authorized_keys
     echo "All configurations and installations have been removed."
 fi
