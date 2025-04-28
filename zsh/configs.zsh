@@ -131,6 +131,7 @@ fi
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
 ##Xserv
 if [[ -n $SSH_CONNECTION ]]; then
     export DISPLAY=localhost:10.0
