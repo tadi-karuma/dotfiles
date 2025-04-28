@@ -23,7 +23,7 @@ if $REBUILD; then
     echo "Rebuilding the environment..."
     echo "$PASS" | sudo -S apt-get remove --purge -y \
         socat peco zsh build-essential libffi-dev libssl-dev zlib1g-dev \
-        liblzma-dev libbz2-dev libreadline-dev libsqlite3-dev libopencv-dev tk-dev git ssh
+        liblzma-dev libbz2-dev libreadline-dev libsqlite3-dev libopencv-dev tk-dev git ssh cargo
     rm -rf ~/.dotfiles ~/.pyenv ~/.ssh/authorized_keys
     echo "All configurations and installations have been removed."
 fi
@@ -67,7 +67,7 @@ echo "$(tput setaf 2)Deploy dotfiles complete!$(tput sgr0)"
 # 必要なパッケージのインストール
 PACKAGES=(
     socat peco zsh build-essential libffi-dev libssl-dev zlib1g-dev
-    liblzma-dev libbz2-dev libreadline-dev libsqlite3-dev libopencv-dev tk-dev git ssh
+    liblzma-dev libbz2-dev libreadline-dev libsqlite3-dev libopencv-dev tk-dev git ssh cargo
 )
 for pkg in "${PACKAGES[@]}"; do
     if ! dpkg -l | grep -q "^ii  $pkg "; then
